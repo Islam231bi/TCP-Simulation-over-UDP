@@ -96,6 +96,7 @@ sock.bind(server_address)
 data, client_address = sock.recvfrom(1024)
 
 # Perform three-way handshake
+
 if data.decode() == 'SYN':
     sock.sendto('SYN-ACK'.encode(), client_address)
     data, client_address = sock.recvfrom(1024)
@@ -137,7 +138,7 @@ while True:
         print(" The checksum incorrect")
     else: 
         print('the sequence number  {} from {} and the message {} and the checksum {}'.format(r_sequence, address,message,checksum))
-        ACKnum=int(r_sequence)+len(message+"message;"+str(r_sequence))
+        ACKnum=int(r_sequence)+len(message+str(r_sequence))
         handle_http_request(sock, address,message)  
 
 
